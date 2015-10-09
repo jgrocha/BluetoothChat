@@ -1,10 +1,9 @@
-package com.example.android.data;
+package com.example.android.bluetoothchat.data;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.net.Uri;
 import android.provider.BaseColumns;
-import android.text.format.Time;
 
 /**
  * Defines table and column names for the temperature database.
@@ -26,8 +25,9 @@ public class TemperatureContract {
     // looking at temperature data. content://com.example.android.sunshine.app/givemeroot/ will fail,
     // as the ContentProvider hasn't been given any information on what to do with "givemeroot".
     // At least, let's hope not.  Don't be that dev, reader.  Don't be that dev.
-    public static final String PATH_TEMPERATURE = "temperature";
+
     public static final String PATH_SENSOR = "sensor";
+    public static final String PATH_TEMPERATURE = "temperature";
     public static final String PATH_CALIBRATION = "calibration";
 
     /* Inner class that defines the table contents of the sensor table */
@@ -46,8 +46,9 @@ public class TemperatureContract {
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_SENSOR).build();
 
-        public static final String CONTENT_TYPE =
+        public static final String CONTENT_DIR_TYPE =
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SENSOR;
+        
         public static final String CONTENT_ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SENSOR;
 
@@ -71,7 +72,7 @@ public class TemperatureContract {
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_TEMPERATURE).build();
 
-        public static final String CONTENT_TYPE =
+        public static final String CONTENT_DIR_TYPE =
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TEMPERATURE;
         public static final String CONTENT_ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_TEMPERATURE;
@@ -81,47 +82,6 @@ public class TemperatureContract {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
-        // sacar temperaturas de um sensor
-        public static Uri buildTemperatureSensor(int sensorId) {
-            return CONTENT_URI.buildUpon().appendPath(Integer.toString(sensorId)).build();
-        }
-
-        // sacar temperatura máxima de um sensor
-        public static Uri buildMaxTemperatureSensor(int sensorId) {
-            return CONTENT_URI.buildUpon().appendPath(Integer.toString(sensorId)).build();
-        }
-
-        // sacar temperatura mínima de um sensor
-        public static Uri buildMinTemperatureSensor(int sensorId) {
-            return CONTENT_URI.buildUpon().appendPath(Integer.toString(sensorId)).build();
-        }
-
-        public static Uri buildTemperatureSensorWithDateParameter(int sensorId, String date) {
-            return CONTENT_URI.buildUpon().appendPath(Integer.toString(sensorId))
-                    .appendQueryParameter(COLUMN_CREATED, date).build();
-        }
-
-        public static Uri buildTemperatureSensorWithDate(int sensorId, String date) {
-            return CONTENT_URI.buildUpon().appendPath(Integer.toString(sensorId))
-                    .appendPath(date).build();
-        }
-
-        // sacar o sensorId presente num URL
-        public static String getSensorFromUri(Uri uri) {
-            return uri.getPathSegments().get(1);
-        }
-
-        public static long getDateFromUri(Uri uri) {
-            return Long.parseLong(uri.getPathSegments().get(2));
-        }
-
-        public static String getDateParameterFromUri(Uri uri) {
-            String dateString = uri.getQueryParameter(COLUMN_CREATED);
-            if (null != dateString && dateString.length() > 0)
-                return dateString;
-            else
-                return null;
-        }
     }
 
     public static final class CalibrationEntry implements BaseColumns {
@@ -142,23 +102,14 @@ public class TemperatureContract {
         public static final Uri CONTENT_URI =
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_CALIBRATION).build();
 
-        public static final String CONTENT_TYPE =
+        public static final String CONTENT_DIR_TYPE =
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_CALIBRATION;
+
         public static final String CONTENT_ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_CALIBRATION;
 
         public static Uri buildCalibrationUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
-        }
-
-        // get calibrations from one sensor
-        public static Uri buildCalibrationSensor(int sensorId) {
-            return CONTENT_URI.buildUpon().appendPath(Integer.toString(sensorId)).build();
-        }
-
-        // get last calibration from one sensor
-        public static Uri buildLastCalibrationSensor(int sensorId) {
-            return CONTENT_URI.buildUpon().appendPath(Integer.toString(sensorId)).build();
         }
 
     }

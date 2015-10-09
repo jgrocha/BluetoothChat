@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.data;
+package com.example.android.bluetoothchat.data;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.test.AndroidTestCase;
+import android.util.Log;
 
 import java.util.HashSet;
 
@@ -100,7 +101,9 @@ public class TestDb extends AndroidTestCase {
     }
 
     public void testSensorTable() {
+
         insertSensor();
+        Log.d("TestProvider", "hello... insertSensor()... done!");
     }
 
     public void testTemperatureTable() {

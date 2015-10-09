@@ -15,7 +15,7 @@
  *
  * Note: This file copied from the Android CTS Tests
  */
-package com.example.android.utils;
+package com.example.android.bluetoothchat.utils;
 
 import junit.framework.Assert;
 import java.util.concurrent.Callable;

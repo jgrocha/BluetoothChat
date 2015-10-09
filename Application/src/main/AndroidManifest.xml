@@ -48,6 +48,11 @@
             android:label="@string/select_device"
             android:theme="@android:style/Theme.Holo.Dialog"/>
 
+        <!-- mesmo importante aparecer aqui, senão o getContext().getContentResolver() não funciona -->
+        <provider
+            android:authorities="com.example.android.bluetoothchat"
+            android:name=".data.TemperatureProvider" />
+
     </application>
 
 </manifest>

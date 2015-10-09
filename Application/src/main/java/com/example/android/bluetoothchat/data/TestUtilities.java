@@ -1,4 +1,4 @@
-package com.example.android.data;
+package com.example.android.bluetoothchat.data;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,10 +10,8 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.test.AndroidTestCase;
 
-import com.example.android.utils.PollingCheck;
+import com.example.android.bluetoothchat.utils.PollingCheck;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
@@ -39,7 +37,7 @@ public class TestUtilities extends AndroidTestCase {
             int idx = valueCursor.getColumnIndex(columnName);
             assertFalse("Column '" + columnName + "' not found. " + error, idx == -1);
             String expectedValue = entry.getValue().toString();
-            assertEquals("Value '" + entry.getValue().toString() +
+            assertEquals("Value '" + valueCursor.getString(idx) +
                     "' did not match the expected value '" +
                     expectedValue + "'. " + error, expectedValue, valueCursor.getString(idx));
         }

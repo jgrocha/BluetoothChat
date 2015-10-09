@@ -1,4 +1,4 @@
-package com.example.android.data;
+package com.example.android.bluetoothchat.data;
 
 import android.test.AndroidTestCase;
 

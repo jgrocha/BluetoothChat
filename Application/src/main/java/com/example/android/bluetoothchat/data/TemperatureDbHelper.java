@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.android.data;
+package com.example.android.bluetoothchat.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.android.data.TemperatureContract.SensorEntry;
-import com.example.android.data.TemperatureContract.TemperatureEntry;
-import com.example.android.data.TemperatureContract.CalibrationEntry;
+import com.example.android.bluetoothchat.data.TemperatureContract.SensorEntry;
+import com.example.android.bluetoothchat.data.TemperatureContract.TemperatureEntry;
+import com.example.android.bluetoothchat.data.TemperatureContract.CalibrationEntry;
 
 /**
  * Manages a local database for weather data.
